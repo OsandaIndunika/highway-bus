@@ -7,7 +7,7 @@ export const NavItems = [
     title: "Busease",
     url: "/busease",
   },
-  
+
   {
     title: "Lost & Found",
     url: "/lost-n-found",
@@ -16,5 +16,4 @@ export const NavItems = [
     title: "About",
     url: "/about",
   },
-  
 ];
