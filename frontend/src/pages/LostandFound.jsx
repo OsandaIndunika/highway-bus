@@ -1,35 +1,87 @@
-import React from 'react';
+import React from "react";
+import bus2 from "../assets/bus2.png";
+import { Button } from "@nextui-org/react";
+import { FaArrowRight } from "react-icons/fa";
 
-function LostandFound({ theme }) {
-  const backgroundImage = '/bus.jpg'; 
+// function LostandFound({ theme }) {
+//   const backgroundImage = '/bus.jpg';
 
+const LostandFound = () => {
   return (
-    <div
-      className="min-h-screen flex flex-col justify-start items-center relative"
-      style={{
-        backgroundImage: `url(${backgroundImage})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
-      }}
-    >
-      <div className={`w-full h-full flex flex-col justify-start items-center pt-10 ${theme === 'light' ? 'bg-white/70' : 'bg-black/70'}`}>
-        <h1 className={`text-4xl font-bold mb-9 flex justify-center items-center ${theme === 'light' ? 'text-black' : 'text-white'}`}>Lost and Found</h1>
-      </div>
-      <div className="absolute bottom-12 flex space-x-40">
-        <button className="px-4 py-2 text-3xl bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-700 transition">Lost Items</button>
-        <button className="px-4 py-2 text-3xl bg-green-500 text-white rounded-lg shadow-md hover:bg-green-700 transition">Found Items</button>
-        <a
-          href="https://docs.google.com/forms/d/e/1FAIpQLSexMDAza0P8_1H8q6rwOsyFl1EQnmP4SZJySxKpW2jgCwSvIQ/viewform?usp=sharing" 
-          target="_blank"
-          rel="noopener noreferrer"
-          className="px-4 py-2 bg-red-500 text-3xl text-white rounded-lg shadow-md hover:bg-red-700 transition"
-        >
-          Submit Lost/Found Items
-        </a>
+    <div className="min-h-screen flex flex-col justify-start items-center relative">
+      <div className="w-full h-full flex flex-col justify-start items-center py-16 lg:py-24 px-10 sm:p-10">
+        <div className="flex flex-col gap-10 md:gap-16 lg:gap-20">
+          <div className="max-w-lg w-full flex flex-col lg:flex-row lg:items-center justify-between gap-8">
+            <img
+              src={bus2}
+              alt="HeroImage"
+              width={154}
+              height={154}
+              className="object-contain"
+            />
+            <div>
+              <h2 className="uppercase font-bold text-orange-500">lost items</h2>
+              <p className="text-sm text-justify">
+                We are a dynamic team of five enthusiastic first-year university
+                students working together on an innovative web development
+                project.
+              </p>
+              <Button className="rounded-lg font-medium bg-transparent p-0 -ml-3">
+                View
+                <FaArrowRight />
+              </Button>
+            </div>
+          </div>
+          <div className="max-w-lg w-full flex flex-col lg:flex-row-reverse lg:items-center justify-between gap-8">
+            <img
+              src={bus2}
+              alt="HeroImage"
+              width={154}
+              height={154}
+              className="object-contain"
+            />
+            <div>
+              <h2 className="uppercase font-bold text-green-500">
+                found items
+              </h2>
+              <p className="text-sm text-justify">
+                We are a dynamic team of five enthusiastic first-year university
+                students working together on an innovative web development
+                project.
+              </p>
+              <Button className="rounded-lg font-medium bg-transparent p-0 -ml-3">
+                View
+                <FaArrowRight />
+              </Button>
+            </div>
+          </div>
+          <div className="max-w-lg w-full flex flex-col lg:flex-row lg:items-center justify-between gap-8">
+            <img
+              src={bus2}
+              alt="HeroImage"
+              width={154}
+              height={154}
+              className="object-contain"
+            />
+            <div>
+              <h2 className="uppercase font-bold text-red-500">
+                You lost something?
+              </h2>
+              <p className="text-sm text-justify">
+                We are a dynamic team of five enthusiastic first-year university
+                students working together on an innovative web development
+                project.
+              </p>
+              <Button className="rounded-lg font-medium bg-transparent p-0 -ml-1">
+                Submit
+                <FaArrowRight />
+              </Button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
-}
+};
 
 export default LostandFound;
