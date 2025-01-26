@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { createRoot } from "react-dom/client";
-import { NextUIProvider } from "@nextui-org/react";
+import { HeroUIProvider } from "@heroui/react";
 import "./index.css";
 import App from "./App.jsx";
 import About from "./pages/Aboutus.jsx";
@@ -10,13 +10,13 @@ import FAQ from "./pages/FAQ.jsx";
 import Register from "./pages/Register.jsx";
 import Login from "./pages/Login.jsx";
 import Reservation from "./pages/Reservation.jsx";
-import Navbar from "../src/components/Navbar";
+import Header from "../src/components/Header";
 import Footer from "../src/components/Footer";
 
 createRoot(document.getElementById("root")).render(
   <BrowserRouter>
-    <NextUIProvider>
-      <Navbar />
+    <HeroUIProvider>
+      <Header />
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/busease" element={<Busease />} />
@@ -28,6 +28,6 @@ createRoot(document.getElementById("root")).render(
         <Route path="/reservation" element={<Reservation />} />
       </Routes>
       <Footer/>
-    </NextUIProvider>
+    </HeroUIProvider>
   </BrowserRouter>
 );
