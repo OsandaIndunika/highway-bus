@@ -18,13 +18,13 @@ const Header = () => {
 
   return (
     <Navbar
-      className="flex items-center justify-center w-full "
+      className="flex items-center justify-center w-full border-b border-slate-100"
       onMenuOpenChange={setIsMenuOpen}
     >
       <NavbarContent>
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-          className="sm:hidden"
+          className="lg:hidden"
         />
         <NavbarBrand>
           <div className="w-36 h-24 flex items-center justify-center">
@@ -39,7 +39,7 @@ const Header = () => {
         </NavbarBrand>
       </NavbarContent>
 
-      <NavbarContent className="hidden sm:flex gap-4" justify="center">
+      <NavbarContent className="hidden lg:flex gap-4" justify="center">
         {NavItems.map((item, index) => (
           <NavbarMenuItem key={index}>
             <Link

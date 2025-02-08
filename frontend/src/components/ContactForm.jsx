@@ -1,33 +1,33 @@
-import {
-  Form,
-  Input,
-  Select,
-  SelectItem,
-  Checkbox,
-  Button,
-} from "@heroui/react";
-import React from "react";
-
+import React, { useState } from "react";
+import { Input, Textarea } from "@heroui/react";
 export default function ContactForm() {
-  const [password, setPassword] = React.useState("");
-  const [submitted, setSubmitted] = React.useState(null);
-  const [errors, setErrors] = React.useState({});
+  const [data, setData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
 
-  const onSubmit = (e) => {
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = (e) => {
     e.preventDefault();
-    const data = Object.fromEntries(new FormData(e.currentTarget));
 
-    // Custom validation checks
-    const newErrors = {};
-
-    if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors);
-
-      return;
+    if (!data.name || !data.email || !data.message) {
+      alert("Cannot submit form");
+    } else {
+      alert(JSON.stringify(data));
+      setData({
+        name: "",
+        email: "",
+        message: "",
+      });
     }
-
-    setErrors({});
-    setSubmitted(data);
   };
 
   return (
@@ -38,94 +38,49 @@ export default function ContactForm() {
         </h3>
         <p>We&apos;d love to hear from you</p>
       </div>
-      <Form
-        className="justify-center items-center space-y-4 z-[-20]"
-        validationBehavior="native"
-        validationErrors={errors}
-        onReset={() => setSubmitted(null)}
-        onSubmit={onSubmit}
-      >
-        <div className="flex flex-col gap-4 max-w-lg">
-          <Input
-            isRequired
-            errorMessage={({ validationDetails }) => {
-              if (validationDetails.valueMissing) {
-                return "Please enter your name";
-              }
-
-              return errors.name;
-            }}
-            label="Name"
-            labelPlacement="outside"
-            name="name"
-            placeholder="Enter your name"
-            className="z-[-20]"
-          />
-
-          <Input
-            isRequired
-            errorMessage={({ validationDetails }) => {
-              if (validationDetails.valueMissing) {
-                return "Please enter your email";
-              }
-              if (validationDetails.typeMismatch) {
-                return "Please enter a valid email address";
-              }
-            }}
-            label="Email"
-            labelPlacement="outside"
-            name="email"
-            placeholder="Enter your email"
-            type="email"
-            className="z-[-20]"
-          />
-
-          <Input
-            isRequired
-            errorMessage={({ validationDetails }) => {
-              if (validationDetails.valueMissing) {
-                return "Please enter your contact number";
-              }
-            }}
-            label="Contact"
-            labelPlacement="outside"
-            name="contact"
-            placeholder="Enter your contact number"
-            type="text"
-            className="z-[-20]"
-          />
-          <Input
-            isRequired
-            errorMessage={({ validationDetails }) => {
-              if (validationDetails.valueMissing) {
-                return "Please enter your message";
-              }
-            }}
-            label="Message"
-            labelPlacement="outside"
-            name="message"
-            placeholder="Enter your Message"
-            type="text"
-            className="z-[-20]"
-          />
-
-          {errors.terms && (
-            <span className="text-danger text-small">{errors.terms}</span>
-          )}
-
-          <div className="flex gap-4">
-            <Button className="w-full" color="primary" type="submit">
+      <div className="flex items-center justify-center">
+        <div className="max-w-xs w-full flex items-center justify-center">
+          <form onSubmit={handleSubmit} className="w-full space-y-4">
+            <div className="flex flex-col gap-y-2">
+              <Input
+                type="text"
+                name="name"
+                label="Name"
+                labelPlacement="outside"
+                value={data.name}
+                onChange={handleChange}
+                placeholder="Your full name"
+              />
+            </div>
+            <div className="flex flex-col gap-y-2">
+              <label htmlFor="email">Email</label>
+              <Input
+                type="email"
+                name="email"
+                value={data.email}
+                onChange={handleChange}
+                placeholder="Your email address"
+              />
+            </div>
+            <div className="flex flex-col gap-y-2">
+              <label htmlFor="message">Message</label>
+              <Textarea
+                name="message"
+                value={data.message}
+                onChange={handleChange}
+                placeholder="Your message"
+                className="max-w-lg w-full"
+              />
+            </div>
+            <button
+              type="submit"
+              className="mt-4 px-4 py-2 bg-primary-500 text-white rounded-md w-full"
+            >
               Submit
-            </Button>
-          </div>
+            </button>
+          </form>
         </div>
-
-        {submitted && (
-          <div className="text-small text-default-500 mt-4">
-            Submitted data: <pre>{JSON.stringify(submitted, null, 2)}</pre>
-          </div>
-        )}
-      </Form>
+      </div>
     </div>
   );
 }
