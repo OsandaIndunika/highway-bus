@@ -3,6 +3,11 @@ import React from "react";
 function AboutUs({ theme, setTheme }) {
   return (
     <div
+    className={`min-h-screen flex items-center justify-center ${
+      theme === "light" ? "bg-cyan-500" : "bg-white"
+    }`}
+  >
+    <div
       className={`py-10 lg:py-24 lg:max-w-6xl flex flex-col gap-y-4 text-justify justify-start items-center px-16 ${
         theme === "light" ? "bg-cyan-500" : "bg-white"
       }`}
@@ -29,7 +34,7 @@ function AboutUs({ theme, setTheme }) {
         <div className="mb-10">
           <h2
             className={`text-2xl font-semibold ${
-              theme === "light" ? "text-black" : "text-white"
+              theme === "light" ? "text-black" : "text-black"
             }`}
           >
             Who We Are
@@ -50,7 +55,7 @@ function AboutUs({ theme, setTheme }) {
         <div className="mb-10">
           <h2
             className={`text-2xl font-semibold ${
-              theme === "light" ? "text-black" : "text-white"
+              theme === "light" ? "text-black" : "text-black"
             }`}
           >
             What We Aim To Achieve
@@ -71,7 +76,7 @@ function AboutUs({ theme, setTheme }) {
         <div>
           <h2
             className={`text-2xl font-semibold mb-4 ${
-              theme === "light" ? "text-black" : "text-white"
+              theme === "light" ? "text-black" : "text-black"
             }`}
           >
             Our Team
@@ -105,7 +110,7 @@ function AboutUs({ theme, setTheme }) {
           <div className="mt-10 flex items-center justify-center">
             <h2
               className={`text-xl font-semibold mb-4 ${
-                theme === "light" ? "text-black" : "text-white"
+                theme === "light" ? "text-black" : "text-black"
               }`}
             >
               Thank You for visiting our page! Stay tuned for updates as we
@@ -115,6 +120,7 @@ function AboutUs({ theme, setTheme }) {
         </div>
       </section>
     </div>
+  </div>
   );
 }
 

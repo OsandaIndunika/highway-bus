@@ -1,9 +1,17 @@
-import React from 'react'
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Reservation = () => {
-  return (
-    <div>Reservation</div>
-  )
-}
+  const navigate = useNavigate();
+  const isLoggedIn = false;
 
-export default Reservation
+  useEffect(() => {
+    if (!isLoggedIn) {
+      navigate("/login");
+    }
+  }, [navigate]);
+
+  return <div>Reservation</div>;
+};
+
+export default Reservation;

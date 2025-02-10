@@ -1,72 +1,86 @@
 import React, { useState } from "react";
-import {
-  Form,
-  Input,
-  Select,
-  SelectItem,
-  Checkbox,
-  Button,
-} from "@nextui-org/react";
+import { Input, Textarea } from "@heroui/react";
+export default function ContactForm() {
+  const [data, setData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
 
-const ContactForm = () => {
-  const [data, setData] = useState();
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(data);
+
+    if (!data.name || !data.email || !data.message) {
+      alert("Cannot submit form");
+    } else {
+      alert(JSON.stringify(data));
+      setData({
+        name: "",
+        email: "",
+        message: "",
+      });
+    }
   };
 
-  // const handleInputChange = (e)=>{
-  //   const {...setData, [name]:value} = e.target;
-  // }
   return (
-    <div className="px-4 py-20 sm:p-6 lg:py-10 h-full">
-      <div className="flex flex-col items-center justify-center">
-        <h1 className="font-semibold uppercase leading-9 text-lg">
+    <div className="py-10 md:py-12 lg:py-16">
+      <div className="flex flex-col pb-10 items-center justify-center text-center">
+        <h3 className="font-bold text-2xl uppercase leading-relaxed">
           Contact Section
-        </h1>
-        <Form className="max-w-sm w-full justify-center items-center gap-y-10 z-[-10]">
-          <div className="flex flex-col gap-6 w-full">
-            <Input
-              label="Name"
-              labelPlacement="outside"
-              name="name"
-              placeholder="Enter your name"
-              className="font-medium"
-            />
-
-            <Input
-              label="Email"
-              labelPlacement="outside"
-              name="email"
-              placeholder="Enter your email"
-              type="email"
-              className="font-medium"
-            />
-            <Input
-              label="Contact"
-              labelPlacement="outside"
-              name="email"
-              placeholder="Enter your contact number"
-              type="text"
-              className="font-medium"
-            />
-            <Input
-              label="Message"
-              labelPlacement="outside"
-              name="email"
-              placeholder="Enter your Mesage"
-              type="email"
-              className="font-medium"
-            />
-          </div>
-          <Button color="primary" className="rounded-lg font-semibold">
-            SUBMIT
-          </Button>
-        </Form>
+        </h3>
+        <p>We&apos;d love to hear from you</p>
+      </div>
+      <div className="flex items-center justify-center">
+        <div className="max-w-xs w-full flex items-center justify-center">
+          <form onSubmit={handleSubmit} className="w-full space-y-4">
+            <div className="flex flex-col gap-y-2">
+              <Input
+                type="text"
+                name="name"
+                label="Name"
+                labelPlacement="outside"
+                value={data.name}
+                onChange={handleChange}
+                placeholder="Your full name"
+              />
+            </div>
+            <div className="flex flex-col gap-y-2">
+              <label htmlFor="email">Email</label>
+              <Input
+                type="email"
+                name="email"
+                value={data.email}
+                onChange={handleChange}
+                placeholder="Your email address"
+              />
+            </div>
+            <div className="flex flex-col gap-y-2">
+              <label htmlFor="message">Message</label>
+              <Textarea
+                name="message"
+                value={data.message}
+                onChange={handleChange}
+                placeholder="Your message"
+                className="max-w-lg w-full"
+              />
+            </div>
+            <button
+              type="submit"
+              className="mt-4 px-4 py-2 bg-primary-500 text-white rounded-md w-full"
+            >
+              Submit
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   );
-};
-
-export default ContactForm;
+}

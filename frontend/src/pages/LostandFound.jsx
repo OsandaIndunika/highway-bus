@@ -1,6 +1,6 @@
 import React from "react";
 import bus2 from "../assets/bus2.png";
-import { Button } from "@nextui-org/react";
+import { Button } from "@heroui/react";
 import { FaArrowRight } from "react-icons/fa";
 
 // function LostandFound({ theme }) {
@@ -64,19 +64,26 @@ const LostandFound = () => {
               className="object-contain"
             />
             <div>
-              <h2 className="uppercase font-bold text-red-500">
-                You lost something?
-              </h2>
-              <p className="text-sm text-justify">
-                We are a dynamic team of five enthusiastic first-year university
-                students working together on an innovative web development
-                project.
-              </p>
-              <Button className="rounded-lg font-medium bg-transparent p-0 -ml-1">
+            <h2 className="uppercase font-bold text-red-500">
+              You lost something?
+            </h2>
+            <p className="text-sm text-justify">
+              We are a dynamic team of five enthusiastic first-year university
+              students working together on an innovative web development
+              project.
+            </p>
+            <a
+              href="https://docs.google.com/forms/d/e/1FAIpQLSfo6Ha-x_a71xIae0tTxsvrcPfUl_RIfhPOzIzfTb4f-jqBVg/viewform?usp=sf_link"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-lg font-medium bg-transparent p-0 -ml-1"
+            >
+              <Button className="rounded-lg font-medium bg-transparent p-0 -ml-3">
                 Submit
                 <FaArrowRight />
               </Button>
-            </div>
+            </a>
+          </div>
           </div>
         </div>
       </div>

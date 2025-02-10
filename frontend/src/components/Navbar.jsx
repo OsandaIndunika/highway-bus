@@ -1,41 +1,74 @@
-import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import React, { useState } from "react";
 import logo from "../assets/logo.png";
-import { Button } from "@nextui-org/button";
+import {
+  Navbar,
+  NavbarBrand,
+  NavbarContent,
+  NavbarItem,
+  NavbarMenuToggle,
+  NavbarMenu,
+  Link,
+  NavbarMenuItem,
+  Button,
+} from "@heroui/react";
 import { NavItems } from "../../constants";
 
-const Navbar = () => {
-  const { pathname } = useLocation();
+const Header = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   return (
-    <header className="sticky top-0 left-0 z-20 bg-white px-4 flex items-center justify-between w-full lg:px-8 2xl:mx-auto 2xl:max-w-5xl border-b border-gray-300 shadow-md">
-      <div className="w-36 h-24 flex items-center justify-center">
-        <img
-          src={logo}
-          alt="logo"
-          width={120}
-          height={75}
-          className="object-cover"
+    <Navbar
+      className="flex items-center justify-center w-full border-b border-slate-100"
+      onMenuOpenChange={setIsMenuOpen}
+    >
+      <NavbarContent>
+        <NavbarMenuToggle
+          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+          className="lg:hidden"
         />
-      </div>
-      <nav className="hidden lg:flex items-center justify-between space-x-8">
+        <NavbarBrand>
+          <div className="w-36 h-24 flex items-center justify-center">
+            <img
+              src={logo}
+              alt="logo"
+              width={120}
+              height={75}
+              className="object-cover"
+            />
+          </div>
+        </NavbarBrand>
+      </NavbarContent>
+
+      <NavbarContent className="hidden lg:flex gap-4" justify="center">
         {NavItems.map((item, index) => (
-          <Link key={index} to={item.url}>
-            <p
-              className={
-                pathname === item.url
-                  ? "border-b-2 border-primary text-primary font-medium"
-                  : "hover:text-primary flex"
+          <NavbarMenuItem key={index}>
+            <Link
+              className="w-full"
+              color={
+                index === 2
+                  ? "primary"
+                  : index === NavItems.length - 1
+                  ? "danger"
+                  : "foreground"
               }
+              href={item.url}
+              size="lg"
             >
               {item.title}
-            </p>
-          </Link>
+            </Link>
+          </NavbarMenuItem>
         ))}
-      </nav>
-      <div className="hidden lg:flex items-center gap-x-8">
-        {/* <Link to="/register">Register</Link> */}
-        <Button className="bg-primary text-white font-medium rounded-full">
-          <Link to="/reservation" className="flex items-center gap-x-2">
+      </NavbarContent>
+
+      <NavbarContent justify="end">
+        <NavbarItem>
+          <Button
+            as={Link}
+            className="bg-primary text-white"
+            href="reservation"
+            variant="flat"
+          >
+            Reservation
             <div className="w-6 h-6">
               <svg
                 viewBox="0 0 24 24"
@@ -60,13 +93,32 @@ const Navbar = () => {
                 </g>
               </svg>
             </div>
-            Reserve Seat
-          </Link>
-        </Button>
-      </div>
-      <div className="lg:hidden bg-primary w-10 h-10"></div>
-    </header>
+          </Button>
+        </NavbarItem>
+      </NavbarContent>
+
+      <NavbarMenu>
+        {NavItems.map((item, index) => (
+          <NavbarMenuItem key={`${item}-${index}`}>
+            <Link
+              className="w-full"
+              color={
+                index === 2
+                  ? "primary"
+                  : index === NavItems.length - 1
+                  ? "danger"
+                  : "foreground"
+              }
+              href={item.url}
+              size="lg"
+            >
+              {item.title}
+            </Link>
+          </NavbarMenuItem>
+        ))}
+      </NavbarMenu>
+    </Navbar>
   );
 };
 
-export default Navbar;
+export default Header;

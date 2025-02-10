@@ -7,7 +7,7 @@ import {
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
-import { Form, Input, Button } from "@nextui-org/react";
+import { Form, Input, Button } from "@heroui/react";
 import { NavItems } from "../../constants";
 
 const Footer = () => {
